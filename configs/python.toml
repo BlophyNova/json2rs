@@ -1,0 +1,28 @@
+langid = "python"
+ext = "py"
+before_struct = """
+@dataclass
+class """
+after_struct = "\n\n"
+before_struct_name = ""
+after_struct_name = ":\n"
+keyword = "class"
+left_brace_replace_by = ""
+right_brace_replace_by = ""
+each_attr_format = "    $NAME: $TYPE"
+number = "int"
+string = "str"
+boolean = "bool"
+array = "List[$T]"
+object = "'$T'"  # Forward reference handling
+null = "None"    # None represents null
+optional = "Optional[$T]"
+file_header = """
+from dataclasses import dataclass
+from typing import List, Optional
+\n
+"""
+file_footer = ""
+indent = "    "
+field_separator = "\n"
+after_last_field = ""

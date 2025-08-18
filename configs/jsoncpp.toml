@@ -1,0 +1,27 @@
+langid = "cpp"
+ext = "h"
+before_struct = "struct "
+after_struct = "};\n\n"
+before_struct_name = ""
+after_struct_name = " {\n"
+keyword = "struct"
+left_brace_replace_by = ""
+right_brace_replace_by = ""
+each_attr_format = "    $TYPE $NAME;\n"
+number = "int"
+string = "std::string"
+boolean = "bool"
+array = "std::vector<$T>"
+object = "$T"
+null = "Json::Value"
+optional = "$T"
+file_header = """
+#pragma once
+#include <json/json.h>
+#include <vector>
+#include <string>
+\n"""
+file_footer = ""
+indent = "    "
+field_separator = ""
+after_last_field = "\n"

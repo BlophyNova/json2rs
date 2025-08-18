@@ -1,0 +1,29 @@
+langid = "java"
+ext = "java"
+before_struct = """
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record """
+after_struct = ") {}\n\n"
+before_struct_name = ""
+after_struct_name = "(\n"
+keyword = "record"
+left_brace_replace_by = ""
+right_brace_replace_by = ""
+each_attr_format = "    $TYPE $NAME,\n"
+number = "int"
+string = "String"
+boolean = "boolean"
+array = "List<$T>"
+object = "$T"
+null = "Object"  # Jackson will ignore nulls
+optional = "$T"  # Java records don't have built-in optional
+file_header = """
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+\n"""
+file_footer = ""
+indent = "    "
+field_separator = ""
+after_last_field = ""

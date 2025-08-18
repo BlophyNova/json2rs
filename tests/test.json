@@ -1,0 +1,10 @@
+{
+  "id": 123,
+  "name": "John",
+  "active": true,
+  "scores": [95.5, 87.3],
+  "address": {
+    "street": "Main St",
+    "city": "Anytown"
+  }
+}
