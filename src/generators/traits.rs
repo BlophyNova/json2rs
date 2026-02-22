@@ -11,7 +11,4 @@ pub trait CodeGenerator {
         root_name: &str,
         config: &GeneratorConfig,
     ) -> Result<String>;
-
-    /// 文件扩展名
-    fn file_extension(&self) -> &'static str;
 }

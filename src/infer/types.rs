@@ -37,14 +37,12 @@ impl InferredType {
 /// 类型推断上下文
 pub struct TypeInferenceContext {
     pub struct_defs: BTreeMap<String, StructDef>,
-    pub nullable_fields: bool,
 }
 
 impl TypeInferenceContext {
-    pub fn new(nullable_fields: bool) -> Self {
+    pub fn new() -> Self {
         Self {
             struct_defs: BTreeMap::new(),
-            nullable_fields,
         }
     }
 

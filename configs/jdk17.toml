@@ -1,4 +1,3 @@
-langid = "java"
 ext = "java"
 before_struct = """
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -7,7 +6,6 @@ public record """
 after_struct = ") {}\n\n"
 before_struct_name = ""
 after_struct_name = "(\n"
-keyword = "record"
 left_brace_replace_by = ""
 right_brace_replace_by = ""
 each_attr_format = "    $TYPE $NAME,\n"

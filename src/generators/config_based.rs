@@ -9,7 +9,7 @@ impl CodeGenerator for ConfigBasedGenerator {
     fn generate(
         &self,
         context: &TypeInferenceContext,
-        root_name: &str,
+        _root_name: &str,
         config: &GeneratorConfig,
     ) -> Result<String> {
         let mut output = String::new();
@@ -30,10 +30,6 @@ impl CodeGenerator for ConfigBasedGenerator {
         }
 
         Ok(output)
-    }
-
-    fn file_extension(&self) -> &'static str {
-        "custom"
     }
 }
 

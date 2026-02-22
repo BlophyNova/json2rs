@@ -20,13 +20,10 @@ lazy_static! {
 /// 代码生成配置
 #[derive(Debug, Deserialize, Default)]
 pub struct GeneratorConfig {
-    pub langid: Option<String>,
-    pub ext: Option<String>,
     pub before_struct: Option<String>,
     pub after_struct: Option<String>,
     pub before_struct_name: Option<String>,
     pub after_struct_name: Option<String>,
-    pub keyword: Option<String>,
     pub left_brace_replace_by: Option<String>,
     pub right_brace_replace_by: Option<String>,
     pub each_attr_format: Option<String>,
@@ -64,11 +61,6 @@ impl GeneratorConfig {
         }
 
         anyhow::bail!("找不到语言配置: {}", config.unwrap().to_str().unwrap())
-    }
-
-    /// 获取文件扩展名
-    pub fn file_extension(&self) -> &str {
-        self.ext.as_deref().unwrap_or("txt")
     }
 
     /// 应用替换规则

@@ -8,7 +8,7 @@ use anyhow::{Context, Result};
 use clap::Parser;
 use cli::Cli;
 use config::GeneratorConfig;
-use generators::{get_generator};
+use generators::get_generator;
 use serde_json::Value;
 use std::fs::File;
 use std::io::{BufReader, Write};
@@ -24,7 +24,7 @@ fn main() -> Result<()> {
 
     let config = GeneratorConfig::load(args.config.as_deref())?;
 
-    let mut context = TypeInferenceContext::new(args.nullable_fields);
+    let mut context = TypeInferenceContext::new();
     let root_name = sanitize_struct_name(&args.root_name);
 
     match &value {
@@ -45,21 +45,18 @@ fn main() -> Result<()> {
         .generate(&context, &root_name, &config)
         .context("生成代码失败")?;
 
-    let output_path = match args.output {
-        Some(path) => path,
+    match args.output {
+        Some(path) => {
+            let mut file =
+                File::create(&path).with_context(|| format!("无法创建文件: {}", path.display()))?;
+            file.write_all(code.as_bytes())
+                .with_context(|| format!("写入文件失败: {}", path.display()))?;
+
+            println!("成功生成: {}", path.display());
+        }
         None => {
-            let ext = config.file_extension();
-            let mut path = args.input.clone();
-            path.set_extension(ext);
-            path
+            println!("{}", code.as_str());
         }
     };
-
-    let mut file = File::create(&output_path)
-        .with_context(|| format!("无法创建文件: {}", output_path.display()))?;
-    file.write_all(code.as_bytes())
-        .with_context(|| format!("写入文件失败: {}", output_path.display()))?;
-
-    println!("成功生成: {}", output_path.display());
     Ok(())
 }

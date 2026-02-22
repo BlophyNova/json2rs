@@ -22,6 +22,6 @@ pub struct Cli {
     pub nullable_fields: bool,
 
     /// 配置文件名称/路径
-    #[arg(short = 'c', long)]
+    #[arg(short = 'c', long, default_value = "rust")]
     pub config: Option<PathBuf>,
 }
